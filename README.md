@@ -31,8 +31,6 @@ $ vagrant up
 * Grab either [the bleeding-edge development version](https://github.com/statedecoded/statedecoded/archive/master.zip) or [the latest numbered release](https://github.com/statedecoded/statedecoded/tags) and unzip it within `/vagrant/`, as `/vagrant/statedecoded/`.
 * Delete `statedecoded/includes/config-sample.inc.php` and replace it with the `config.inc.php` provided with this Vagrant quick start guide. Rename `statedecoded/includes/class.State-sample.inc.php` to `class.Virginia.inc.php`.
 
-mysql root / password
-
 ### Download Sample XML
 
 To have some data to play with, download [the Code of Virginia XML](http://vacode.org/downloads/code.xml.zip) and unzip it, putting its contents into `/statedecoded/htdocs/admin/xml/`.
