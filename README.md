@@ -6,30 +6,11 @@ A Vagrant configuration for State Decoded, to make it easy to get started.
 
 Installing Vagrant is very simple—simply [follow the instructions](http://docs.vagrantup.com/v2/installation/).
 
-### Set up Your Vagrant Box
+### Start the Vagrant Machine
 
-Download your virtual machine:
-
-```
-$ vagrant box add statedecoded statedecoded.box
-$ vagrant init
-```
-
-Replace Vagrant's default config files:
-
-* Copy [the provided Vagrantfile](blob/master/Vagrantfile) into your Vagrant directory.
-* Copy [the provided bootstrap.sh]blob/master/bootstrap.sh) into your Vagrant directory.
-
-Start the Vagrant box:
-
-```
-$ vagrant up
-```
-
-### Download The State Decoded
-
-* Grab either [the bleeding-edge development version](https://github.com/statedecoded/statedecoded/archive/master.zip) or [the latest numbered release](https://github.com/statedecoded/statedecoded/tags) and unzip it within `/vagrant/`, as `/vagrant/statedecoded/`.
-* Delete `statedecoded/includes/config-sample.inc.php` and replace it with the `config.inc.php` provided with this Vagrant quick start guide. Rename `statedecoded/includes/class.State-sample.inc.php` to `class.Virginia.inc.php`.
+* Download a copy of this repository.
+* Change into the directory that contains the repository.
+* Run the command `vagrant up`
 
 ### Download Sample XML
 
