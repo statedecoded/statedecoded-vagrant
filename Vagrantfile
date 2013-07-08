@@ -19,4 +19,17 @@ Vagrant.configure("2") do |config|
     puppet.module_path = "modules"
     puppet.options = ['--verbose']
   end
+
+  # Install the required plugins
+  def require_plugin plugin
+    puts `cd ~/ >/dev/null && vagrant plugin install #{plugin}` unless `cd ~/ && vagrant plugin list`.chomp.split("\n").select{|x| x.include? plugin}.length > 0
+  end
+  
+  require_plugin = "vagrant-hostsupdater"
+
+  config.vm.hostname = "statedecoded.dev"
+  config.vm.network :private_network, :ip => "192.168.56.101"
+  config.hostsupdater.aliases = %w{www.statedecoded.dev}
+  config.hostsupdater.remove_on_suspend = true
+
 end
