@@ -25,7 +25,7 @@ We're able to skip most of [the configuration steps for The State Decoded](/stat
 * Create a new MySQL database (e.g., `mysqladmin create statedecoded`).
 * Load `statedecoded.sql` into MySQL (e.g., `cd /vagrant/statedecoded; mysql statedecoded < statedecoded.sql`).
 * Manually add a record to the MySQL table named `editions` for the instance of the legal code that you intend to import into The State Decoded. (e.g., `mysql -u root -p statedecoded`, then `INSERT INTO editions SET year=2012;`)
-* Rename `includes/config-sample.inc.php` to `includes/config.inc.php` and step through to set up some 
+* Rename `includes/config-sample.inc.php` to `includes/config.inc.php` and step through to set up some standard values. Nearly all of the default values will work for the sample Code of Virginia, so just modify the first few values to name your site.
 
 ### Run the Parser
 
