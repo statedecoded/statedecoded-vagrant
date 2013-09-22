@@ -8,6 +8,7 @@ delete mysql module and replace with simpler one.
 Module for statedecoded config:
 	setup directory permissions on /htdocs/downloads/ xml
 	setup admin/.htpasswd .htdocs
+    ensure parsing step works out of the box
 
 Ensure git submodule works the way I think it does
 
