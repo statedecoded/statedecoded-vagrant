@@ -1,0 +1,14 @@
+To run puppet locally call:
+sudo puppet apply --modulepath=/vagrant/modules /vagrant/manifests/default.pp 
+
+
+TODO:
+delete mysql module and replace with simpler one.
+
+Module for statedecoded config:
+	setup directory permissions on /htdocs/downloads/ xml
+	setup admin/.htpasswd .htdocs
+
+Ensure git submodule works the way I think it does
+
+Merge everything back into master

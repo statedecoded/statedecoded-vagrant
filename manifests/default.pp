@@ -1,51 +1,29 @@
+# This is start of our puppet configuration
 
+class {'vm-config':} 
+
+# executes apt-get update before any package install
 exec { 'apt-get update':
-  command => 'apt-get update',
-  path    => '/usr/bin/',
-  timeout => 60,
-  tries   => 3,
+  command => '/usr/bin/apt-get update'
+}
+Exec['apt-get update'] -> Package <| |>
+
+# required packages for statedecoded
+package {['vim', 
+	 'build-essential',
+	 'tidy',
+	 'zip',
+	 'git',
+	 ]:
+     ensure => present 
 }
 
-class { 'apt':
-  always_apt_update => true,
+class { 'apache': 
+	admin_email => "nskelsey@gmail.com",
 }
 
-package { ['python-software-properties']:
-  ensure  => 'installed',
-  require => Exec['apt-get update'],
-}
-
-file { '/home/vagrant/.bash_aliases':
-  ensure => 'present',
-  source => 'puppet:///modules/puphpet/dot/.bash_aliases',
-}
-
-package { ['build-essential', 'tidy', 'zip']:
-  ensure  => 'installed',
-  require => Exec['apt-get update'],
-}
-
-class { 'apache': }
-
-apache::dotconf { 'custom':
-  content => 'EnableSendfile Off',
-}
-
-apache::module { 'rewrite': }
-
-apache::vhost { 'statedecoded.dev':
-  server_name   => '192.168.56.101',
-  docroot       => '/var/www/htdocs/',
-  port          => '80',
-  env_variables => [],
-  priority      => '1',
-}
-
-
-class { 'php':
-  service => 'apache',
-  require => Package['apache'],
-}
+# PHP dependencies
+class { 'php': }
 
 php::module { 'php5-mysql': }
 php::module { 'php5-cli': }
@@ -63,8 +41,13 @@ class { 'php::pear':
   require => Class['php'],
 }
 
+php::ini { 'php':
+  value   => ['date.timezone = "America/New_York"'],
+  target  => 'php.ini',
+  service => 'apache',
+}
 
-
+# xdebug for debuging php
 class { 'xdebug':
   service => 'apache',
 }
@@ -77,20 +60,4 @@ xdebug::config { 'cli':
   remote_autostart => '0',
   remote_port      => '9000',
 }
-
-
-
-
-php::ini { 'php':
-  value   => ['date.timezone = "America/New_York"'],
-  target  => 'php.ini',
-  service => 'apache',
-}
-
-class { 'mysql':
-  root_password => 'password',
-  require       => Exec['apt-get update'],
-}
-
-
 
