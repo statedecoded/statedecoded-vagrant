@@ -12,23 +12,28 @@
 #
 #
 class solr::jetty(
-  $solr_version = '4.4.0',
-  $solr_home = '/opt',
-  $zookeeper_hosts = "",
-  $exec_path = '/usr/bin:/usr/sbin:/bin:/usr/local/bin:/opt/local/bin'
-){
+  $solr_version = $solr::params::solr_version,
+  $solr_home = $solr::params::solr_home,
+  $zookeeper_hosts = $solr::params::zookeeper_hosts,
+) inherits solr::params {
 
-  class { "solr::core":
-    solr_version => $solr_version,
-    exec_path    => $exec_path
+  class { 'solr::core': }
+
+  if $operatingsystem == "Ubuntu" {
+	exec { "load init.d into upstart":
+	  command => "update-rc.d solr defaults",
+          user    => "root",
+	  onlyif => "test 7 != `ls -al /etc/rc*.d | grep solr | wc | awk '{print \$1}'`" ,
+	  require => [File["/etc/init.d/solr"], Class['solr::core']]
+	  # checks if solr service is enabled
+	}	
   }
-
   file { "/etc/init.d/solr":
     ensure => "present",
     mode   => '0755',
-    source => "puppet:///modules/solr/solr"
+    source => "puppet:///modules/solr/solr",
+    owner  => 'root',
   } ->
-
   file { "/etc/default/solr-jetty":
     content => template("solr/solr-jetty.erb"),
     ensure => present,
