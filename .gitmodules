@@ -1,0 +1,3 @@
+[submodule "modules/solr"]
+	path = modules/solr
+	url = git://github.com/NSkelsey/puppet-solr.git
