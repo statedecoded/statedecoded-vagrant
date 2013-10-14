@@ -1,12 +1,12 @@
+import 'site_setup.pp'
+
 #global vars
 $statedecoded_home = "/var/www/statedecoded"
-$mysql_user = "statedecoded"
+# these are refrences to the variables in config-sample.inc.php
+# if you change these here make sure they there as well
+$mysql_user = "username"
+$mysql_password = "password"
 $mysql_db = "statedecoded"
-$mysql_password = "changeMe"
-
-# This is start of our puppet configuration
-
-class {'vm-config':} 
 
 # executes apt-get update before any package install
 exec { 'apt-get update':
@@ -15,7 +15,7 @@ exec { 'apt-get update':
 Exec['apt-get update'] -> Package <| |>
 
 # required packages for statedecoded
-package {['vim', 
+package {[
 	 'build-essential',
 	 'tidy',
 	 'zip',
@@ -24,8 +24,22 @@ package {['vim',
      ensure => present 
 }
 
+# pacakges that are unessecary but useful for development
+package {[
+     'vim',
+     'curl',
+     'lynx',
+    ]:
+    ensure => present
+} ->
+# adds some syntax highlighting/changes bash prompt
+class {'vm-config':} 
+
+
+
 class { 'apache': 
 	admin_email => "nskelsey@gmail.com",
+    statedecoded_home => $statedecoded_home,
 }
 
 # PHP dependencies
@@ -81,21 +95,19 @@ mysql::grant { 'statedecoded':
     mysql_user => $mysql_user,
 }
 
-# solr install
-file {"solr_home":
-    name => "${statedecoded_home}/solr_home",
-    ensure => directory,
-    recurse => true,
-    purge => true,
-    source => "/vagrant/src/solr_home",
-    owner => 'root',
-    mode => 644,
-    require => Class['apache'],
+# Finally we configure as much statedecoded as we can!
+class { "statedecoded":
+    home    => $statedecoded_home,
+    require => [Class['apache'], Class['mysql'], Class['php']],
 } ->
+
 package { 'default-jdk': 
     ensure => 'installed',
-       } ->
+} ->
+
+# We have to install solr last since it needs a working solr home
 class { "solr::jetty":
     solr_home => "${statedecoded_home}/solr_home"
 }
+
 
