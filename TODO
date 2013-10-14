@@ -12,4 +12,10 @@ Module for statedecoded config:
 
 Ensure git submodule works the way I think it does
 
-Merge everything back into master
+Ensure $statedecoded_home is owned by correct user
+    same with running services
+
+update README with/TEST:
+
+git submodule init
+git submodule update

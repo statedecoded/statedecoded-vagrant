@@ -1,7 +1,7 @@
 <VirtualHost *:80>
 	ServerName   <%= network_eth1 %>
 	ServerAdmin  <%= admin_email %>
-        DocumentRoot /var/www/htdocs
+    DocumentRoot <%= statedecoded_home %>/htdocs
 	ErrorLog     /var/log/apache2/statedecoded_error.log
 	CustomLog    /var/log/apache2/statedecoded_access.log common
 </VirtualHost>

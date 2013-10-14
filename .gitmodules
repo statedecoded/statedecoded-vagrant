@@ -1,3 +1,6 @@
 [submodule "modules/solr"]
 	path = modules/solr
 	url = git://github.com/NSkelsey/puppet-solr.git
+[submodule "src"]
+	path = src
+	url = https://github.com/statedecoded/statedecoded.git
