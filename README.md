@@ -11,24 +11,23 @@ Installing Vagrant is very simple—simply [follow the instructions](http://docs
 * Download a copy of this repository and unzip it into a directory.
 * At the command line, change into the directory that contains this repository.
 * Download the git submodules using: `git submodule init; git submodule update`
-* Run the command `vagrant up`. (This can take <10 minutes)
+* Run the command `vagrant up` (This can takes roughly 10 minutes)
 
 ### Watch puppet take care of most of the installation! (hopefully!)
 We are using puppet to provision our virtural machine. If you run into problems
 at this stage please open a bug on github. Once puppet has finished running
-severl things have happened:
+several things have happened:
 
 * An apache server is running with its doc root at /var/www/statedecoded/htdocs
 * A solr server is running with its home set to /var/www/statedecoded/solr_home
-* A mysql server is running with a username and password specified at the top of
-* manifests/default.pp (the root mysql password can be found at `~/root-mysql/.my.cnf`
+* A mysql server is running with a username and password specified at the top of manifests/default.pp (the root mysql password can be found at `~/root-mysql/.my.cnf`
 * php and all of its dependencies have been installed
 
 At this point you are extremely close to having a running instance of the
 statedecoded. What you need to do is finish the
 configuration/setup of the statedecoded itself. Refer to the [manual](http://statedecoded.github.io/documentation/installation.html#basic-configuration) for the
-rest of the pieces. Namely, you still need to download some laws in XML to
-import and then run the law importer. Before doing this you should test your
+for the whole picture of what happened. Anyway, you still need to download some laws in XML to
+import and then run the law import. Before doing this you should test your
 enviroment by going to http://192.168.42.33/admin/ and running the tests. Make
 sure everything passses, if you can't figure it out, just ask somebody.  Once that is all done you should
 be able to run the parser at http://192.168.42.33/admin/ that imports the laws into mysql and solr.
