@@ -2,13 +2,15 @@
 
 A Vagrant configuration for State Decoded, to make it easy to get started.
 
-### Install Vagrant
+### Install Vagrant and git!
 
 Installing Vagrant is very simple—simply [follow the instructions](http://docs.vagrantup.com/v2/installation/).
 
-### Start the Vagrant Machine
+You can find an installer for git [here](http://git-scm.com/downloads)
 
-* Download a copy of this repository and unzip it into a directory.
+### Dowload the code and start the Vagrant Machine
+
+* From the command line `git clone https://github.com/statedecoded/statedecoded-vagrant`
 * At the command line, change into the directory that contains this repository.
 * Download the git submodules using: `git submodule init; git submodule update`
 * Run the command `vagrant up` (This can take roughly 10 minutes or abit longer if this is the first time)
