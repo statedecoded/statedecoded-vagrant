@@ -3,16 +3,11 @@ sudo puppet apply --modulepath=/vagrant/modules /vagrant/manifests/default.pp
 
 
 TODO:
-delete mysql module and replace with simpler one.
+replace mysql module and replace with simpler one.
+add nginx support
+
 
 Module for statedecoded config:
     ensure parsing step works out of the box
-    figure out why doc_root is causing problems in MasterControler line 48
 
-Ensure git submodule works the way I think it does
-
-
-update README with/TEST:
-
-git submodule init
-git submodule update
+Repoint commit once 0.8 is released
