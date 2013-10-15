@@ -10,10 +10,10 @@ You can find an installer for git [here](http://git-scm.com/downloads)
 
 ### Dowload the code and start the Vagrant Machine
 
-* From the command line `git clone https://github.com/statedecoded/statedecoded-vagrant`
-* At the command line, change into the directory that contains this repository.
+* From the command line run `git clone https://github.com/statedecoded/statedecoded-vagrant`
+* cd into the statedecoded-vagrant directory
 * Download the git submodules using: `git submodule init; git submodule update`
-* Run the command `vagrant up` (This can take roughly 10 minutes or abit longer if this is the first time)
+* Run the command `vagrant up` (This can take roughly 10 minutes or slightly longer if this is the first time)
 
 ### Watch puppet take care of most of the installation! (hopefully!)
 We are using puppet to provision our virtural machine. If you run into problems
@@ -55,7 +55,7 @@ puppet apply --verbose --modulepath
 /tmp/vagrant-puppet/manifests/default.pp
 ```
 
-* Which meansthe admin portal for the site lives at http://192.168.42.33/admin
+* Which means the admin portal for the site lives at http://192.168.42.33/admin
 
 * Solr's admin interface is reachable at:
 http://192.168.42.33:8983/solr/#
