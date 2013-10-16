@@ -12,7 +12,7 @@ You can find an installer for git [here](http://git-scm.com/downloads)
 
 * From the command line run `git clone https://github.com/statedecoded/statedecoded-vagrant`
 * cd into the statedecoded-vagrant directory
-* Download the git submodules using: `git submodule init; git submodule update`
+* Download the git submodules using: `git submodule update --init`
 * Run the command `vagrant up` (This can take roughly 10 minutes or slightly longer if this is the first time)
 
 ### Watch puppet take care of most of the installation! (hopefully!)
@@ -33,8 +33,8 @@ configuration/setup of the statedecoded itself. Refer to the [manual](http://sta
 for the whole picture of what happened. Anyway, you still need to download some laws in XML to
 import and then run the law import. Before doing this you should test your
 enviroment by going to http://192.168.42.33/admin/ and running the tests. Make
-sure everything passses, if you can't figure out how to get a test to pass, just ask somebody.  Once that is all done you should
-be able to run the parser at http://192.168.42.33/admin/ that imports the laws into mysql and solr.
+sure everything passses, if you can't figure out how to get a test to pass just ask somebody.  Once that is all done you should
+be able to run the parser also at http://192.168.42.33/admin/ that imports the laws into mysql and solr.
 
 
 ### If all else fails!
@@ -46,6 +46,8 @@ installation. Create a new vagrant box and follow the [docs](http://statedecoded
 ### Debugging notes
 
 * On your host machine the virtual machine is reachable at 192.168.42.33
+* Meaning the statedecoded admin interface lives at http://192.168.42.33/admin
+
 
 * If you want to run puppet from within the vagrant machine run this concise command: 
 ```bash
@@ -54,8 +56,6 @@ puppet apply --verbose --modulepath
 /tmp/vagrant-puppet/manifests --detailed-exitcodes
 /tmp/vagrant-puppet/manifests/default.pp
 ```
-
-* Which means the admin portal for the site lives at http://192.168.42.33/admin
 
 * Solr's admin interface is reachable at:
 http://192.168.42.33:8983/solr/#
